@@ -3,17 +3,25 @@ const confirm_password = document.querySelector('#confirm_password')
 const password = document.querySelector('#password');
 
 function validate_password() {
-  error.style.display = "none";
+  show_error();
 
   if (password.value !== '' && confirm_password.value !== '') {
     if (password.value === confirm_password.value) {
-      error.style.display = "none";
+      show_error();
     }
     else {
-      error.style.display = "block";
+      confirm_password.classList.add('password_not_match')
+      password.classList.add('password_not_match')
+      error.style.display = 'inline-block';
     }
   }
 }
 
-password.onchange = validate_password;
+function show_error() {
+  error.style.display = 'none';
+  confirm_password.classList.remove('password_not_match');
+  password.classList.remove('password_not_match');
+}
+
+password.onkeyup = validate_password;
 confirm_password.onkeyup = validate_password;

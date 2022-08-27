@@ -109,6 +109,7 @@ html, body {
 }
 
 .field {
+  position: relative;
   margin-bottom: 15px;
 
   display: flex;
@@ -116,6 +117,7 @@ html, body {
 }
 
 .white_box form label {
+  margin-bottom: .3rem;
   text-transform: uppercase;
   font-size: .7rem;
   font-weight: 500;
@@ -132,14 +134,41 @@ html, body {
 }
 
 .error_message {
+  position: absolute;
+  bottom: -23px;
+  z-index: -1;
+  
+  padding: .2rem .5rem;
+  
   display: none;
   font-size: 0.9rem;
-  color: var(--invalid-input)
+  width: 100%;
+  background-color: var(--invalid-input);
+  color: white;
+  text-align: center;
+
+  border-radius: 0 0 5px 5px;
+  animation: grow_down 300ms ease-in-out forwards;
+}
+
+@keyframes grow_down {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.password_not_match {
+  border: none;
+  outline: 1.5px solid var(--invalid-input);
 }
 
 input:focus {
   border: none;
   outline: 1.5px solid var(--input-focus);
+  box-shadow: 0 0 5px var(--black-semi-transparent);
 }
 
 input:not(:focus):not(:placeholder-shown):invalid {
@@ -160,9 +189,10 @@ button[type="submit"] {
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  height: 35px;
+  height: 40px;
   width: 170px;
   background-color: var(--button-color);
+  font-size: .9rem;
   font-weight: bold;
   color: white;
   transition: all 0.3s ease-in-out;
